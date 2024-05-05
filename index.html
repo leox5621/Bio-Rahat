@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD Rahat's Bio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #4CAF50, #FFFF00); /* Mixer of green and yellow */
+      color: #fff;
+    }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    a {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="greeting">
+      <h1>Bade</h1>
+    </div>
+    <div class="time" id="bd-time">
+      <!-- Bangladesh Time will be inserted here dynamically -->
+    </div>
+    <div class="info">
+      <h2>About Me</h2>
+      <p>Name: MD Rahat</p>
+      <p>FB Account: <a href="https://www.facebook.com/profile.php?id=100086547322069">Profile 1</a></p>
+      <p>FB 2nd Account: <a href="https://www.facebook.com/marm.ak.1829">Profile 2</a></p>
+      <p>Number: 01773224051</p>
+    </div>
+  </div>
+  <script>
+    // Function to get the current time in Bangladesh time zone
+    function getBangladeshTime() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Dhaka', hour12: false };
+      return now.toLocaleString('en-US', options);
+    }
+
+    // Function to update the Bangladesh time every second
+    function updateTime() {
+      document.getElementById('bd-time').textContent = `Bangladesh Time: ${getBangladeshTime()}`;
+    }
+
+    // Call the updateTime function initially and then every second to keep the time updated
+    updateTime();
+    setInterval(updateTime, 1000); // Update time every second
+  </script>
+</body>
+</html>
