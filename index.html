@@ -27,7 +27,7 @@
 <body>
   <div class="container">
     <div class="greeting">
-      <h1>Bade</h1>
+      <!-- Greeting message will be inserted here dynamically -->
     </div>
     <div class="time" id="bd-time">
       <!-- Bangladesh Time will be inserted here dynamically -->
@@ -38,6 +38,9 @@
       <p>FB Account: <a href="https://www.facebook.com/profile.php?id=100086547322069">Profile 1</a></p>
       <p>FB 2nd Account: <a href="https://www.facebook.com/marm.ak.1829">Profile 2</a></p>
       <p>Number: 01773224051</p>
+    </div>
+    <div class="night-message">
+      <!-- Nighttime message will be inserted here dynamically -->
     </div>
   </div>
   <script>
@@ -53,9 +56,37 @@
       document.getElementById('bd-time').textContent = `Bangladesh Time: ${getBangladeshTime()}`;
     }
 
-    // Call the updateTime function initially and then every second to keep the time updated
+    // Function to set greeting based on time of day
+    function setGreeting() {
+      const currentHour = new Date().getHours();
+      let greeting;
+      if (currentHour >= 5 && currentHour < 12) {
+        greeting = 'Good morning 🌅';
+      } else if (currentHour >= 12 && currentHour < 18) {
+        greeting = 'Good afternoon ☀️';
+      } else if (currentHour >= 18 && currentHour < 20) {
+        greeting = 'Good evening 🌆';
+      } else {
+        greeting = 'Good night 🌙';
+      }
+      document.querySelector('.greeting').textContent = greeting;
+    }
+
+    // Function to set nighttime message
+    function setNightMessage() {
+      const currentHour = new Date().getHours();
+      if (currentHour >= 0 && currentHour < 5) {
+        document.querySelector('.night-message').textContent = 'Have a nice dream! 🙂';
+      }
+    }
+
+    // Call the updateTime and setGreeting functions initially and then every second to keep the time and greeting updated
     updateTime();
+    setGreeting();
+    setNightMessage();
     setInterval(updateTime, 1000); // Update time every second
+    setInterval(setGreeting, 60000); // Update greeting every minute
+    setInterval(setNightMessage, 60000); // Check for nighttime message every minute
   </script>
 </body>
 </html>
